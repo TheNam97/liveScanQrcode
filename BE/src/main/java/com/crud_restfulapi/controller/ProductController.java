@@ -18,6 +18,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 
+@CrossOrigin(origins = "*", maxAge = 3600)
 @RestController // trả về data dạng object, spring sẽ chuyển sang json thay vì dùng @controller trả về dạng template
 @RequestMapping(path="/api/products")
 public class ProductController {

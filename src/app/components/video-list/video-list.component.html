@@ -22,7 +22,7 @@
   </mat-nav-list>
   <h2>Danh sách Scan Qrcode</h2>
 
-  <table class="styled-table">
+  <table class="styled-table" *ngIf="listResult">
     <thead>
     <tr>
       <th>STT</th>
@@ -38,19 +38,19 @@
         class="active-row"
     >
       <td >
-        <span >{{i}}</span>
+        <span >{{i+1}}</span>
       </td>
       <td >
-        <span >VCN14352453423</span>
+        <span >{{result.itemCode}}</span>
       </td>
       <td >
-        <span >325960</span>
+        <span >{{result.poscode}}</span>
       </td>
       <td >
-        <img [src]="img" alt="verison imgs" class="img-td">
+        <img [src]="result.imgQrcode" alt="verison imgs" class="img-td">
       </td>
       <td >
-        <img [src]="img" alt="verison imgs" class="img-td">
+        <img [src]="result.imgGoods" alt="verison imgs" class="img-td">
       </td>
     </tr>
     </tbody>
@@ -61,6 +61,9 @@
       {{page}} / {{ maxPage}}
     </span>
     <button type="button" class="btn btn-primary" (click)="sau()">Trang sau ></button>
+    <span class="pagination-number" style="background-color: rgb(105, 85, 22) !important;">
+      Tổng số: {{total}}
+    </span>
   </div>
 
 <!--  <pagination-->

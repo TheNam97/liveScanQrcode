@@ -4,8 +4,10 @@ import com.crud_restfulapi.model.responseObject;
 import com.crud_restfulapi.service.IProductService;
 import com.crud_restfulapi.service.IQrcodeService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.autoconfigure.data.web.SpringDataWebProperties.Pageable;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Sort;
 import org.springframework.http.*;
 
 import org.springframework.web.bind.annotation.*;
@@ -27,8 +29,9 @@ public class qrcodeController {
     }
 
     @GetMapping(value = "/getListQrcode")
-    public ResponseEntity<Page<Qrcode> > searchVoucherWithPage(Pageable pageable)  {
-        Page<Qrcode> page = iQrcodeService.getListQrcode();
-        return new ResponseEntity<Page<Qrcode> >(page, HttpStatus.OK);
+    public ResponseEntity<Page<Qrcode> > searchVoucherWithPage( Pageable pageable , @RequestParam String searchOption)  {
+      Pageable pb = PageRequest.of(pageable.getPageNumber(), pageable.getPageSize(), Sort.by("id").descending());
+        Page<Qrcode> page = iQrcodeService.getListQrcode(pb);
+        return new ResponseEntity<>(page, HttpStatus.OK);
     }
 }

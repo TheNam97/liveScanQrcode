@@ -41,9 +41,10 @@ export class VideoService {
     });
   }
 
-  public getListQrcode(): Observable<any> {
+  public getListQrcode(req : any): Observable<any> {
     // const headers = this.setHeaders()
     return this.http.get<any>('http://localhost:8082/api/qrcode/getListQrcode',{
+      params: req,
       observe: 'response',
       responseType:'json'
     });

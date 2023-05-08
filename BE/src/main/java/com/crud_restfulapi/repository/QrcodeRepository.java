@@ -1,6 +1,7 @@
 package com.crud_restfulapi.repository;
 
 import com.crud_restfulapi.model.Qrcode;
+import org.springframework.data.domain.Page;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 
@@ -10,4 +11,5 @@ public interface QrcodeRepository extends JpaRepository<Qrcode , Long> {
     //SELECT * FROM product ORDER BY id DESC LIMIT 1;
     @Query( nativeQuery = true, value = "SELECT * FROM qrcode ORDER BY id DESC LIMIT 1")
     Qrcode getQrcodeLatest();
+
 }
