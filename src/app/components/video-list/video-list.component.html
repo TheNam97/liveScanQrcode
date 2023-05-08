@@ -1,0 +1,78 @@
+<div class="video-list">
+  <div class="header">
+    <h2 class="title">Danh sách Camera</h2>
+    <p>
+      <span style="font-weight: 600">
+        Tự động phát
+      </span>
+      <mat-slide-toggle (change)="onChange()" [checked]="playNext" aria-label="Enable autoplay"></mat-slide-toggle>
+    </p>
+  </div>
+  <mat-nav-list class="list">
+    <a
+      mat-list-item
+      class="list-item"
+      *ngFor="let video of videoList; let i = index"
+      [ngClass]="{ active: video.selected }"
+      (click)="playIt(i)"
+    >
+      <i class="material-icons">play_arrow</i>
+      {{ video.name }}
+    </a>
+  </mat-nav-list>
+  <h2>Danh sách Scan Qrcode</h2>
+
+  <table class="styled-table">
+    <thead>
+    <tr>
+      <th>STT</th>
+      <th>QrCode</th>
+      <th>POSCode</th>
+      <th>Ảnh Qrcode</th>
+      <th>Ảnh hàng hóa</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let result of listResult; let i = index"
+        style="cursor: pointer"
+        class="active-row"
+    >
+      <td >
+        <span >{{i}}</span>
+      </td>
+      <td >
+        <span >VCN14352453423</span>
+      </td>
+      <td >
+        <span >325960</span>
+      </td>
+      <td >
+        <img [src]="img" alt="verison imgs" class="img-td">
+      </td>
+      <td >
+        <img [src]="img" alt="verison imgs" class="img-td">
+      </td>
+    </tr>
+    </tbody>
+  </table>
+  <div class="pagination">
+    <button type="button" class="btn btn-primary" (click)="truoc()">< Trang trước</button>
+    <span class="pagination-number">
+      {{page}} / {{ maxPage}}
+    </span>
+    <button type="button" class="btn btn-primary" (click)="sau()">Trang sau ></button>
+  </div>
+
+<!--  <pagination-->
+<!--    *ngIf="listResult.length > 5"-->
+<!--    [boundaryLinks]="true"-->
+<!--    [totalItems]="listResult.length"-->
+<!--    [(ngModel)]="page"-->
+<!--    [itemsPerPage]="itemsPerPage"-->
+<!--    (pageChanged)="loadPage($event)"-->
+<!--    [maxSize]="5"-->
+<!--    [rotate]="true"-->
+<!--    class="pagination"-->
+<!--  ></pagination>-->
+
+</div>

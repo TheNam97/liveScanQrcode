@@ -1,0 +1,5 @@
+<div class="video-wrapper">
+  <video #video class="video" id="video" (click)="onVideoClick()" (dblclick)="onDoubleClick()"></video>
+<!--  <canvas id="canvas" style="overflow:auto"></canvas>-->
+  <mat-spinner *ngIf="loading" class="spinner" color="accent" strokeWidth="5"></mat-spinner>
+</div>

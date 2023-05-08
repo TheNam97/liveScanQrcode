@@ -1,0 +1,50 @@
+<div class="video-controls">
+<!--  <app-progress-bar-->
+<!--    class="bar"-->
+<!--    [max]="duration"-->
+<!--    [value]="currentProgress"-->
+<!--    [label]="ariaLabel()"-->
+<!--    (input)="onInput($event)"-->
+<!--    (change)="onChange($event)"-->
+<!--  ></app-progress-bar>-->
+  <div class="controls">
+    <app-control [icon]="iconPlaying.value" [title]="iconPlaying.name" (click)="onPlayClick()"></app-control>
+    <app-control icon="skip_next" title="Next" (click)="onNextClick()"></app-control>
+    <app-control-volume></app-control-volume>
+    <app-time [currentProgress]="currentProgress" [duration]="duration"></app-time>
+    <div class="full-screen">
+      <app-control icon="fullscreen" title="Fullscreen" (click)="onFullscreen()"></app-control>
+    </div>
+  </div>
+</div>
+
+<div class="show">
+  <h2>Kết quả Scan QrCode</h2>
+  <div class="result-text">
+    <h3>Mã QrCode: VCN14352453423</h3>
+  </div>
+  <div class="result-text">
+    <h3> Mã chia: 321090</h3>
+  </div>
+  <div class="result-textbox">
+<!--    <span class="address">&nbsp;&nbsp; Địa chỉ gửi: </span>-->
+    <input readonly class="textbox" type="text" value="   Địa chỉ gửi: Số 5 đường Phạm Hùng Phường Mỹ Đình 2 Quận Nam Từ Liêm TP Hà Nội">
+  </div>
+  <div class="result-textbox">
+<!--    <span class="address">Địa chỉ nhận: </span>-->
+    <input readonly class="textbox" type="text" value="Địa chỉ nhận: Số 5 đường Phạm Hùng Phường Mỹ Đình 2 Quận Nam Từ Liêm TP Hà Nội">
+  </div>
+  <div class="contain-result">
+    <div style="float: left; width: 50%; margin-top: 5px">
+      <div class="text">Ảnh QrCode</div>
+      <img [src]="img" alt="verison imgs" class="img-td" style="max-width: 70%; margin-top: 20px">
+    </div>
+    <div style="float: left; width: 50%; margin-top: 5px">
+      <div class="text">Ảnh hàng hóa</div>
+      <img [src]="img" alt="verison imgs" class="img-td" style="max-width: 70%; margin-top: 20px">
+    </div>
+  </div>
+
+<!--  <img [src]="" alt="verison imgs" class="img-td">-->
+<!--  <img [src]="" alt="verison imgs" class="img-td">-->
+</div>
