@@ -2,7 +2,6 @@ package com.crud_restfulapi.model;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
-import java.util.UUID;
 
 @Entity
 @Table(name = "qrcode")
@@ -10,19 +9,19 @@ public class Qrcode {
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   private Long id;
-  @Column(name = "ItemCode")
+  @Column(name = "itemcode")
   private String itemCode;
   @Column(name = "Time")
   private LocalDateTime time;
-  @Column(name = "SenderAddress")
+  @Column(name = "senderaddress")
   private String senderAddress;
-  @Column(name = "ReceiverAddress")
+  @Column(name = "receiveraddress")
   private String receiverAddress;
-  @Column(name = "POSCode")
+  @Column(name = "poscode")
   private String POSCode;
-  @Column(name = "imgQrcode")
+  @Column(name = "imgqrcode")
   private String imgQrcode;
-  @Column(name = "imgGoods")
+  @Column(name = "imggoods")
   private String imgGoods;
 
   public Long getId() {

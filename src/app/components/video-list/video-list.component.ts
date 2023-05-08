@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { VideoService } from 'src/app/services/video.service';
 import PlaylistItem from 'src/app/interfaces/playlist-item.interface';
 import { VideoPlaylistService } from 'src/app/services/video-playlist.service';
+import { IQrCode, QrCode } from 'src/app/model';
 
 @Component({
   selector: 'app-video-list',
@@ -19,6 +20,8 @@ export class VideoListComponent implements OnInit {
   public page: any = 1;
   public itemsPerPage = 10;
   public maxPage:any
+
+  public qrcode: IQrCode;
 
   private list: PlaylistItem[] = [];
   private activeVideo = 0;
@@ -65,20 +68,23 @@ export class VideoListComponent implements OnInit {
 
     setInterval(
         () => {
-          this.videoService.getLatest().subscribe(data => {
-            console.log('data',data)
+          this.videoService.getLatest().subscribe(getData => {
+            if(getData != null && getData != undefined)
+            this.qrcode = getData.body.data
+            this.videoService.sendQrcode(this.qrcode);
+            // console.log('this.qrcode',this.qrcode)
           })
         }
-        , 500
+        , 1000
       );
 
 
-    const getData = this.videoService.getData.subscribe( (data:any) => {
-      if( data != null ) {
-        this.img = data.img;
-        getData.unsubscribe();
-      }
-    });
+    // const getData = this.videoService.getData.subscribe( (data:any) => {
+    //   if( data != null ) {
+    //     this.img = data.img;
+    //     getData.unsubscribe();
+    //   }
+    // });
     this.calculator()
   }
   public loadPage(pageChangeEvent: any) {

@@ -14,6 +14,12 @@ export class VideoService {
   private loading = new BehaviorSubject<boolean>(true);
   private videoEnded = new BehaviorSubject<boolean>(false);
 
+  private dataSourceQrcode = new BehaviorSubject(null);
+  getQrcode = this.dataSourceQrcode.asObservable();
+  sendQrcode(param: any) {
+    this.dataSourceQrcode.next(param);
+  }
+
   private dataSource = new BehaviorSubject(null);
   getData = this.dataSource.asObservable();
   sendData(param: any) {
@@ -30,11 +36,14 @@ export class VideoService {
   public getLatest(): Observable<any> {
     // const headers = this.setHeaders()
     return this.http.get<any>('http://localhost:8082/api/qrcode/getLatest',{
-      // headers: {
-      //   "Access-Control-Allow-Origin": "*",
-      //   "Access-Control-Allow-Methods": "GET,PUT,POST,DELETE,PATCH,OPTIONS",
-      //   'Access-Control-Allow-Headers': 'Content-Type, X-Auth-Token, Origin, Authorization'
-      //  },
+      observe: 'response',
+      responseType:'json'
+    });
+  }
+
+  public getListQrcode(): Observable<any> {
+    // const headers = this.setHeaders()
+    return this.http.get<any>('http://localhost:8082/api/qrcode/getListQrcode',{
       observe: 'response',
       responseType:'json'
     });

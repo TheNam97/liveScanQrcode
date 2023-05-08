@@ -1,6 +1,6 @@
 [
   {
     "title": "HKVision 1",
-    "url": "http://localhost/video/stream.m3u8"
+    "url": "http://localhost:81/video/stream.m3u8"
   }
 ]

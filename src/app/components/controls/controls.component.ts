@@ -3,6 +3,7 @@ import { VideoService } from 'src/app/services/video.service';
 import { MatSliderChange } from '@angular/material/slider';
 import { VideoTimeService } from 'src/app/services/video-time.service';
 import { VideoPlaylistService } from 'src/app/services/video-playlist.service';
+import { IQrCode, QrCode } from 'src/app/model';
 
 @Component({
   selector: 'app-controls',
@@ -16,6 +17,7 @@ export class ControlsComponent implements OnInit {
   public currentTime = 0;
   public label = "Audio volume";
   public img: any;
+  public qrcode: IQrCode
 
   private videoEnded = false;
 
@@ -39,12 +41,23 @@ export class ControlsComponent implements OnInit {
       .videoEnded$
       .subscribe(ended => (this.videoEnded = ended));
 
-    const getData = this.videoService.getData.subscribe( (data:any) => {
-      if( data != null ) {
-        this.img = data.img;
-        getData.unsubscribe();
-      }
-    });
+    // const getData = this.videoService.getData.subscribe( (data:any) => {
+    //   if( data != null ) {
+    //     this.img = data.img;
+    //     getData.unsubscribe();
+    //   }
+    // });
+    this.videoService.getQrcode.subscribe(getQrcode => {
+      // console.log('getQrcode',getQrcode)
+        if(getQrcode != null && getQrcode != undefined){
+          this.qrcode = getQrcode
+          this.qrcode.senderAddress = 'Địa chỉ gửi: '+ this.qrcode.senderAddress
+          this.qrcode.receiverAddress = 'Địa chỉ gửi: '+ this.qrcode.receiverAddress
+          this.qrcode.imgGoods = 'data:image/jpeg;base64,' + this.qrcode.imgGoods
+          this.qrcode.imgQrcode = 'data:image/jpeg;base64,' + this.qrcode.imgQrcode
+          //  console.log(this.qrcode.imgGoods)
+        }
+    })
   }
 
   public onPlayClick() {

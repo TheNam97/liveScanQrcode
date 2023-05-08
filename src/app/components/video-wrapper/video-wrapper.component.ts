@@ -56,16 +56,16 @@ export class VideoWrapperComponent implements OnInit {
       this.video.nativeElement.addEventListener(videoListener, this.videoListeners[videoListener])
     );
 
-    this.timer = setInterval(
-      () => {
-        if (this.checkRun === 0) {
-          this.getImgFromVideo1();
-        } else {
-          clearInterval(this.timer);
-        }
-      }
-      , 500
-    );
+    // this.timer = setInterval(
+    //   () => {
+    //     if (this.checkRun === 0) {
+    //       this.getImgFromVideo1();
+    //     } else {
+    //       clearInterval(this.timer);
+    //     }
+    //   }
+    //   , 500
+    // );
   }
 
   public getImgFromVideo1() {
