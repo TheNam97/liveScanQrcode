@@ -3,6 +3,9 @@ import {VideoService} from 'src/app/services/video.service';
 import PlaylistItem from 'src/app/interfaces/playlist-item.interface';
 import {VideoPlaylistService} from 'src/app/services/video-playlist.service';
 import {IQrCode, QrCode} from 'src/app/model';
+import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
+import {AppComponent} from "../../app.component";
+import {ShowdetailComponent} from "../showdetail/showdetail.component";
 
 @Component({
   selector: 'app-video-list',
@@ -30,6 +33,7 @@ export class VideoListComponent implements OnInit {
 
   constructor(
     private videoService: VideoService,
+    private _dialog: MatDialog,
     private videoPlaylistService: VideoPlaylistService
   ) {
 
@@ -106,10 +110,36 @@ export class VideoListComponent implements OnInit {
       for(let i =0 ; i< this.listResult.length; i++){
         this.listResult[i].imgGoods = 'data:image/jpeg;base64,' + this.listResult[i].imgGoods;
         this.listResult[i].imgQrcode = 'data:image/jpeg;base64,' + this.listResult[i].imgQrcode;
+        this.listResult[i].senderAddress = 'Địa chỉ gửi: ' + this.listResult[i].senderAddress;
+        this.listResult[i].receiverAddress = 'Địa chỉ nhận: ' + this.listResult[i].receiverAddress;
       }
       // console.log(dataListQrcode.body.totalElements,'this.listResult',this.listResult)
       this.calculator(dataListQrcode.body.totalElements)
     })
+  }
+
+  public showDetailAll(index: any, type: any){
+    this.videoService.sendDataDetail({
+      typeShow: type,
+      content: this.listResult[index]
+    });
+    const dialog = this._dialog.open(ShowdetailComponent, {
+      width: '60%',
+      disableClose: false,
+      autoFocus:true,
+    });
+  }
+
+  public showDetailImg(index: any, type: any){
+    this.videoService.sendDataDetail({
+      typeShow: type,
+      content: this.listResult[index]
+    });
+    const dialog = this._dialog.open(ShowdetailComponent, {
+      width: '45%',
+      disableClose: false,
+      autoFocus:true,
+    });
   }
 
   public loadPage(pageChangeEvent: any) {

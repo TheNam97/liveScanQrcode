@@ -21,6 +21,9 @@ import {FormsModule} from '@angular/forms';
 import {ShowComponent} from "./components/show/show.component";
 
 import { HttpClientModule } from '@angular/common/http';
+import {MatDialogModule} from "@angular/material/dialog";
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { ShowdetailComponent } from './components/showdetail/showdetail.component';
 
 @NgModule({
   declarations: [
@@ -32,7 +35,8 @@ import { HttpClientModule } from '@angular/common/http';
     ControlVolumeComponent,
     TimeComponent,
     VideoListComponent,
-    ShowComponent
+    ShowComponent,
+    ShowdetailComponent
   ],
   imports: [
     PopoverModule.forRoot(),
@@ -45,6 +49,8 @@ import { HttpClientModule } from '@angular/common/http';
     PaginationModule.forRoot(),
     FormsModule,
     HttpClientModule,
+    MatDialogModule,
+    BrowserAnimationsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

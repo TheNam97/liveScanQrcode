@@ -1,4 +1,4 @@
-<div class="video-list">
+<div class="video-list" style="margin: 0px; padding: 0px">
   <div class="header">
     <h2 class="title">Danh sách Camera</h2>
     <p>
@@ -25,7 +25,7 @@
   <table class="styled-table" *ngIf="listResult">
     <thead>
     <tr>
-      <th>STT</th>
+      <th>ID</th>
       <th>QrCode</th>
       <th>POSCode</th>
       <th>Ảnh Qrcode</th>
@@ -37,20 +37,20 @@
         style="cursor: pointer"
         class="active-row"
     >
-      <td >
+      <td (click)="showDetailAll(i,'all')">
         <span >{{result.id}}</span>
       </td>
-      <td >
+      <td (click)="showDetailAll(i,'all')">
         <span >{{result.itemCode}}</span>
       </td>
-      <td >
+      <td (click)="showDetailAll(i,'all')">
         <span >{{result.poscode}}</span>
       </td>
       <td >
-        <img [src]="result.imgQrcode" alt="verison imgs" class="img-td">
+        <img [src]="result.imgQrcode" alt="verison imgs" class="img-td" (click)="showDetailImg(i,'imgQrcode')">
       </td>
       <td >
-        <img [src]="result.imgGoods" alt="verison imgs" class="img-td">
+        <img [src]="result.imgGoods" alt="verison imgs" class="img-td" (click)="showDetailImg(i,'imgGoods')">
       </td>
     </tr>
     </tbody>

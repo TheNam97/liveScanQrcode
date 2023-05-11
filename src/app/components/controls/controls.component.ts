@@ -52,7 +52,7 @@ export class ControlsComponent implements OnInit {
         if(getQrcode != null && getQrcode != undefined){
           this.qrcode = getQrcode
           this.qrcode.senderAddress = 'Địa chỉ gửi: '+ this.qrcode.senderAddress
-          this.qrcode.receiverAddress = 'Địa chỉ gửi: '+ this.qrcode.receiverAddress
+          this.qrcode.receiverAddress = 'Địa chỉ nhận: '+ this.qrcode.receiverAddress
           this.qrcode.imgGoods = 'data:image/jpeg;base64,' + this.qrcode.imgGoods
           this.qrcode.imgQrcode = 'data:image/jpeg;base64,' + this.qrcode.imgQrcode
           //  console.log(this.qrcode.imgGoods)

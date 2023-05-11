@@ -26,6 +26,12 @@ export class VideoService {
     this.dataSource.next(param);
   }
 
+  private dataSourceDetail = new BehaviorSubject(null);
+  getDataDetail = this.dataSourceDetail.asObservable();
+  sendDataDetail(param: any) {
+    this.dataSourceDetail.next(param);
+  }
+
   // headers: { 'Content-Type': 'application/json'}
 
   // public setHeaders(): any{ //{ 'Content-Type': 'application/json' }
