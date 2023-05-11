@@ -67,7 +67,6 @@ export class VideoListComponent implements OnInit {
     //   }
     //   , 100
     // );
-  this.getListQrcode();
     setInterval(
       () => {
         this.videoService.getLatest().subscribe(getData => {
@@ -76,8 +75,9 @@ export class VideoListComponent implements OnInit {
           this.videoService.sendQrcode(this.qrcode);
           // console.log('this.qrcode',this.qrcode)
         })
+        this.getListQrcode();
       }
-      , 1000
+      , 1500
     );
 
     // const getData = this.videoService.getData.subscribe( (data:any) => {
