@@ -1,13 +1,13 @@
 package com.crud_restfulapi.model;
 
-public class responseObject {
+public class ResponseObject {
     private String status;
     private String message;
     private Object data;
 
-    public responseObject(){}
+    public ResponseObject(){}
 
-    public responseObject(String status, String message, Object data) {
+    public ResponseObject(String status, String message, Object data) {
         this.status = status;
         this.message = message;
         this.data = data;

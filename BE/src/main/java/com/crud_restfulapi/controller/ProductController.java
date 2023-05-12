@@ -1,6 +1,5 @@
 package com.crud_restfulapi.controller;
-
-import com.crud_restfulapi.model.responseObject;
+import com.crud_restfulapi.model.ResponseObject;
 import com.crud_restfulapi.model.Product;
 import com.crud_restfulapi.model.zalo;
 import com.crud_restfulapi.service.IProductService;
@@ -12,10 +11,8 @@ import org.springframework.util.LinkedMultiValueMap;
 import org.springframework.util.MultiValueMap;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.client.RestTemplate;
-
 import java.io.IOException;
 import java.util.List;
-import java.util.Map;
 import java.util.Optional;
 
 @CrossOrigin(origins = "*", maxAge = 3600)
@@ -37,12 +34,12 @@ public class ProductController {
 //        return new ResponseEntity<List<Product>>( iProductService.getAllProduct(), HttpStatus.OK);
 //    }
     @GetMapping("/getall")
-    ResponseEntity<responseObject> getAll(){
-        responseObject a = new responseObject("Done!","Đã tìm thấy các sản phẩm",iQrcodeService.getQrcodeLatest());
+    ResponseEntity<ResponseObject> getAll(){
+        ResponseObject a = new ResponseObject("Done!","Đã tìm thấy các sản phẩm",iQrcodeService.getQrcodeLatest());
         return new ResponseEntity<>( a, HttpStatus.OK);
     }
     @GetMapping("/getalll")
-    ResponseEntity<responseObject> getAlll() throws IOException {
+    ResponseEntity<ResponseObject> getAlll() throws IOException {
 
         //https://stackoverflow.com/questions/66277274/how-to-send-body-in-resttemplate-as-application-x-www-form-urlencoded
 //        MultiValueMap<String, String> requestBody = new LinkedMultiValueMap<>();
@@ -80,61 +77,61 @@ public class ProductController {
 //        HttpEntity<MultiValueMap<String, String>> requestt = new HttpEntity<MultiValueMap<String, String>>(mapp, headersss);
 //        ResponseEntity<String> responsee = restTemplate.postForEntity( url, requestt , String.class );
 
-        responseObject a = new responseObject("Done!","Đã tìm thấy các sản phẩm",iProductService.getAllProduct());
+        ResponseObject a = new ResponseObject("Done!","Đã tìm thấy các sản phẩm",iProductService.getAllProduct());
         return new ResponseEntity<>( a, HttpStatus.OK);
     }
 
 
     @GetMapping("/{id}")  //Địa chỉ nhận request
-    ResponseEntity<responseObject> findById(@PathVariable long id){
+    ResponseEntity<ResponseObject> findById(@PathVariable long id){
         Optional<Product> foundProduct= iProductService.getOneProduct(id);
         if (foundProduct.isPresent()){
             return ResponseEntity.status(HttpStatus.OK).body(
-                    new responseObject("Done!","Da tim thay id="+id,foundProduct)
+                    new ResponseObject("Done!","Da tim thay id="+id,foundProduct)
             );
         }else {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body(
-                    new responseObject("Fail","Khong tim thay id="+id,""));
+                    new ResponseObject("Fail","Khong tim thay id="+id,""));
         }
     }
     //Postman: raw,json
     @PostMapping("/insert")
-    ResponseEntity<responseObject> insertProduct(@RequestBody Product product){
+    ResponseEntity<ResponseObject> insertProduct(@RequestBody Product product){
         List<Product> products = iProductService.findByProductName(product.getProductName());
         if (products.size()==0) {
             iProductService.addProduct(product);
             return ResponseEntity.status(HttpStatus.OK).body(
-                    new responseObject("Done!", "Da them Product", product)
+                    new ResponseObject("Done!", "Da them Product", product)
             );
         } else {return ResponseEntity.status(HttpStatus.NOT_FOUND).body(
-                new responseObject("Fail", "Product da ton tai", "")
+                new ResponseObject("Fail", "Product da ton tai", "")
         );}
     }
     @DeleteMapping("/{id}")
-    ResponseEntity<responseObject> deleteById(@PathVariable long id){
+    ResponseEntity<ResponseObject> deleteById(@PathVariable long id){
         Optional<Product> foundProduct= iProductService.getOneProduct(id);
 
         if (foundProduct.isPresent()){
             iProductService.deleteProduct(id);
             return ResponseEntity.status(HttpStatus.OK).body(
-                    new responseObject("Done!","Da xoa id="+id,foundProduct)
+                    new ResponseObject("Done!","Da xoa id="+id,foundProduct)
             );
         }else {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body(
-                    new responseObject("Fail","Khong tim thay id="+id,""));
+                    new ResponseObject("Fail","Khong tim thay id="+id,""));
         }
     }
     @PutMapping("{id}")
-    ResponseEntity<responseObject> updateProduct(@PathVariable long id,@RequestBody Product product ){
+    ResponseEntity<ResponseObject> updateProduct(@PathVariable long id, @RequestBody Product product ){
         Optional<Product> foundProduct = iProductService.getOneProduct(id);
         if (foundProduct.isPresent()){
             iProductService.updateProduct(id,product);
             return ResponseEntity.status(HttpStatus.OK).body(
-                    new responseObject("Done!","Da cap nhat id="+id,product)
+                    new ResponseObject("Done!","Da cap nhat id="+id,product)
             );
         }else {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body(
-                    new responseObject("Fail","Khong tim thay id="+id,""));
+                    new ResponseObject("Fail","Khong tim thay id="+id,""));
         }
     }
 }
