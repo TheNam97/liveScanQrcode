@@ -40,6 +40,8 @@ export class VideoListComponent implements OnInit {
   }
 
   public ngOnInit() {
+    this.qrcode = new QrCode;
+    this.qrcode.itemCode = 'first'
     this.videoPlaylistService.list$.subscribe(list => (this.list = list));
     this.videoPlaylistService.currentVideo$.subscribe(currentVideo => {
       this.videoList = this.list.map(item => ({
@@ -73,7 +75,7 @@ export class VideoListComponent implements OnInit {
     // );
     setInterval(
       () => {
-        this.videoService.getLatest().subscribe(getData => {
+        this.videoService.getLatest(this.qrcode?.itemCode).subscribe(getData => {
           if (getData !== null && getData !== undefined)
             this.qrcode = getData.body.data
           this.videoService.sendQrcode(this.qrcode);

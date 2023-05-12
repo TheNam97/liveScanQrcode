@@ -39,9 +39,9 @@ export class VideoService {
   //   return headers
   // }
 
-  public getLatest(): Observable<any> {
+  public getLatest(itemCode: any): Observable<any> {
     // const headers = this.setHeaders()
-    return this.http.get<any>('http://localhost:8082/api/qrcode/getLatest',{
+    return this.http.get<any>(`http://localhost:8082/api/qrcode/getLatest/${itemCode}`,{
       observe: 'response',
       responseType:'json'
     });
