@@ -41,6 +41,7 @@ public class QrcodeController {
       robot.mousePress(InputEvent.BUTTON1_MASK);
       robot.delay(50);
       robot.mouseRelease(InputEvent.BUTTON1_MASK);
+      robot.keyPress(KeyEvent.VK_C);
       robot.keyPress(KeyEvent.VK_V);
       robot.keyRelease(KeyEvent.VK_CONTROL);
       robot.keyRelease(KeyEvent.VK_V);
