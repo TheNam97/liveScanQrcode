@@ -28,6 +28,9 @@ export class VideoListComponent implements OnInit {
 
   public qrcode: IQrCode;
 
+  public roboFlowQRcode: any;
+  public roboFlowGoods: any;
+
   private list: PlaylistItem[] = [];
   private activeVideo = 0;
 
@@ -109,6 +112,12 @@ export class VideoListComponent implements OnInit {
     ).subscribe( dataListQrcode => {
       this.listResult = dataListQrcode.body.content;
       this.total = dataListQrcode.body.totalElements;
+      this.videoService.getRoboFlowQrcode(this.listResult[0].imgGoods).subscribe(data =>{
+        this.roboFlowQRcode = data.body;
+      });
+      this.videoService.getRoboFlowGoods(this.listResult[0].imgGoods).subscribe(data =>{
+        this.roboFlowGoods = data.body;
+      });
       for(let i =0 ; i< this.listResult.length; i++){
         this.listResult[i].imgGoods = 'data:image/jpeg;base64,' + this.listResult[i].imgGoods;
         this.listResult[i].imgQrcode = 'data:image/jpeg;base64,' + this.listResult[i].imgQrcode;

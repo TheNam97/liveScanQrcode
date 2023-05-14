@@ -1,5 +1,5 @@
-import { Injectable } from '@angular/core';
-import { BehaviorSubject, Subject, Observable } from 'rxjs';
+import {Injectable} from '@angular/core';
+import {BehaviorSubject, Subject, Observable} from 'rxjs';
 import {HttpClient, HttpHeaders} from "@angular/common/http";
 
 @Injectable({
@@ -8,7 +8,8 @@ import {HttpClient, HttpHeaders} from "@angular/common/http";
 export class VideoService {
   constructor(
     private http: HttpClient
-  ) { }
+  ) {
+  }
 
   private playingState = new Subject<boolean>();
   private loading = new BehaviorSubject<boolean>(true);
@@ -16,18 +17,21 @@ export class VideoService {
 
   private dataSourceQrcode = new BehaviorSubject(null);
   getQrcode = this.dataSourceQrcode.asObservable();
+
   sendQrcode(param: any) {
     this.dataSourceQrcode.next(param);
   }
 
   private dataSource = new BehaviorSubject(null);
   getData = this.dataSource.asObservable();
+
   sendData(param: any) {
     this.dataSource.next(param);
   }
 
   private dataSourceDetail = new BehaviorSubject(null);
   getDataDetail = this.dataSourceDetail.asObservable();
+
   sendDataDetail(param: any) {
     this.dataSourceDetail.next(param);
   }
@@ -39,20 +43,46 @@ export class VideoService {
   //   return headers
   // }
 
-  public getLatest(itemCode: any): Observable<any> {
-    // const headers = this.setHeaders()
-    return this.http.get<any>(`http://localhost:8082/api/qrcode/getLatest/${itemCode}`,{
+  public getRoboFlowQrcode(imgBase64: any) {
+    return this.http.post<any>('https://detect.roboflow.com/qr-bq04z/1',imgBase64, {
+      params: {
+            api_key: 'bqGjAG1m40DKlg4whQYw'
+      },
+      headers: {
+        'Content-Type': 'application/x-www-form-urlencoded'
+      },
       observe: 'response',
-      responseType:'json'
+      responseType: 'json'
     });
   }
 
-  public getListQrcode(req : any): Observable<any> {
+  public getRoboFlowGoods(imgBase64: any) {
+    return this.http.post<any>('https://detect.roboflow.com/nhan-dien-kien-hang1/1',imgBase64, {
+      params: {
+        api_key: 'bqGjAG1m40DKlg4whQYw'
+      },
+      headers: {
+        'Content-Type': 'application/x-www-form-urlencoded'
+      },
+      observe: 'response',
+      responseType: 'json'
+    });
+  }
+
+  public getLatest(itemCode: any): Observable<any> {
     // const headers = this.setHeaders()
-    return this.http.get<any>('http://localhost:8082/api/qrcode/getListQrcode',{
+    return this.http.get<any>(`http://localhost:8082/api/qrcode/getLatest/${itemCode}`, {
+      observe: 'response',
+      responseType: 'json'
+    });
+  }
+
+  public getListQrcode(req: any): Observable<any> {
+    // const headers = this.setHeaders()
+    return this.http.get<any>('http://localhost:8082/api/qrcode/getListQrcode', {
       params: req,
       observe: 'response',
-      responseType:'json'
+      responseType: 'json'
     });
   }
 
