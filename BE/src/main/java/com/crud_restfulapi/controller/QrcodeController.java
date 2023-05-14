@@ -37,14 +37,18 @@ public class QrcodeController {
       StringSelection strse1 = new StringSelection(str);
       clip.setContents(strse1, strse1);
       Robot robot = new Robot();
+      // robot.mouseMove(1000,1000);
 //      robot.mouseMove(1000,1000);
+      robot.delay(2000);
       robot.mousePress(InputEvent.BUTTON1_MASK);
-      robot.delay(50);
+      // robot.delay(50);
       robot.mouseRelease(InputEvent.BUTTON1_MASK);
-      robot.keyPress(KeyEvent.VK_C);
+      robot.keyPress(KeyEvent.VK_CONTROL);
       robot.keyPress(KeyEvent.VK_V);
       robot.keyRelease(KeyEvent.VK_CONTROL);
       robot.keyRelease(KeyEvent.VK_V);
+      robot.keyPress(KeyEvent.VK_ENTER);
+      robot.keyRelease(KeyEvent.VK_ENTER);
     }
     return new ResponseEntity<>(responseObject, HttpStatus.OK);
   }
