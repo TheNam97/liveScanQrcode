@@ -30,7 +30,7 @@ public class QrcodeController {
     Qrcode qrcode = iQrcodeService.getQrcodeLatest();
     ResponseObject responseObject = new ResponseObject("Done!", "Qrcode mới nhất", qrcode);
     System.setProperty("java.awt.headless", "false");
-    if(!qrcode.getItemCode().equals(itemCode)){
+    if(!qrcode.getItemCode().equals(itemCode) && !itemCode.equals("first")){
       String testString = qrcode.getItemCode();
       String str = testString;
       Clipboard clip = Toolkit.getDefaultToolkit().getSystemClipboard();
@@ -39,7 +39,7 @@ public class QrcodeController {
       Robot robot = new Robot();
       // robot.mouseMove(1000,1000);
 //      robot.mouseMove(1000,1000);
-      robot.delay(2000);
+      // robot.delay(1000);
       robot.mousePress(InputEvent.BUTTON1_MASK);
       // robot.delay(50);
       robot.mouseRelease(InputEvent.BUTTON1_MASK);
