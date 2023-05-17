@@ -17,34 +17,3 @@
     </div>
   </div>
 </div>
-
-<div class="show" *ngIf="qrcode">
-  <h2>Kết quả Scan QrCode</h2>
-  <div class="result-text">
-    <h3>Mã QrCode: {{qrcode.itemCode}}</h3>
-  </div>
-  <div class="result-text">
-    <h3> Mã chia: {{qrcode.poscode}}</h3>
-  </div>
-  <div class="result-textbox">
-<!--    <span class="address">&nbsp;&nbsp; Địa chỉ gửi: </span>-->
-    <input readonly class="textbox" type="text" [(ngModel)]="qrcode.senderAddress">
-  </div>
-  <div class="result-textbox">
-<!--    <span class="address">Địa chỉ nhận: </span>-->
-    <input readonly class="textbox" type="text" [(ngModel)]="qrcode.receiverAddress">
-  </div>
-  <div class="contain-result">
-    <div style="float: left; width: 50%; margin-top: 5px">
-      <div class="text">Ảnh QrCode</div>
-      <img [src]="qrcode.imgQrcode" alt="verison imgs" class="img-td" style="max-width: 70%; margin-top: 20px">
-    </div>
-    <div style="float: left; width: 50%; margin-top: 5px">
-      <div class="text">Ảnh hàng hóa</div>
-      <img [src]="qrcode.imgGoods" alt="verison imgs" class="img-td" style="max-width: 70%; margin-top: 20px">
-    </div>
-  </div>
-
-<!--  <img [src]="" alt="verison imgs" class="img-td">-->
-<!--  <img [src]="" alt="verison imgs" class="img-td">-->
-</div>

@@ -18,12 +18,12 @@ import { MatListModule } from '@angular/material/list';
 import { PopoverModule } from 'ngx-bootstrap/popover';
 import {PaginationModule} from 'ngx-bootstrap';
 import {FormsModule} from '@angular/forms';
-import {ShowComponent} from "./components/show/show.component";
 
 import { HttpClientModule } from '@angular/common/http';
 import {MatDialogModule} from "@angular/material/dialog";
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ShowdetailComponent } from './components/showdetail/showdetail.component';
+import { ResultRealTimeComponent } from './components/result-real-time/result-real-time.component';
 
 @NgModule({
   declarations: [
@@ -35,8 +35,8 @@ import { ShowdetailComponent } from './components/showdetail/showdetail.componen
     ControlVolumeComponent,
     TimeComponent,
     VideoListComponent,
-    ShowComponent,
-    ShowdetailComponent
+    ShowdetailComponent,
+    ResultRealTimeComponent
   ],
   imports: [
     PopoverModule.forRoot(),

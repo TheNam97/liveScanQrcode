@@ -40,24 +40,6 @@ export class ControlsComponent implements OnInit {
     this.videoService
       .videoEnded$
       .subscribe(ended => (this.videoEnded = ended));
-
-    // const getData = this.videoService.getData.subscribe( (data:any) => {
-    //   if( data != null ) {
-    //     this.img = data.img;
-    //     getData.unsubscribe();
-    //   }
-    // });
-    this.videoService.getQrcode.subscribe(getQrcode => {
-      // console.log('getQrcode',getQrcode)
-        if(getQrcode != null && getQrcode != undefined){
-          this.qrcode = getQrcode
-          this.qrcode.senderAddress = 'Địa chỉ gửi: '+ this.qrcode.senderAddress
-          this.qrcode.receiverAddress = 'Địa chỉ nhận: '+ this.qrcode.receiverAddress
-          this.qrcode.imgGoods = 'data:image/jpeg;base64,' + this.qrcode.imgGoods
-          this.qrcode.imgQrcode = 'data:image/jpeg;base64,' + this.qrcode.imgQrcode
-          //  console.log(this.qrcode.imgGoods)
-        }
-    })
   }
 
   public onPlayClick() {
