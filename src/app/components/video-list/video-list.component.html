@@ -1,15 +1,15 @@
-<div class="video-list" style="margin: 0px; padding: 0px">
-  <div class="header">
-    <h2 class="title">Danh sách Camera</h2>
+<div class="video-list" style="">
+  <div class="header" style="width: 500px">
+    <!-- <h2 class="title">Danh sách Camera</h2>
     <p>
       <span style="font-weight: 600">
         Tự động phát
       </span>
       <mat-slide-toggle (change)="onChange()" [checked]="playNext" aria-label="Enable autoplay"></mat-slide-toggle>
-    </p>
+    </p> -->
   </div>
-  <mat-nav-list class="list">
-    <a
+  <mat-nav-list class="list" style="max-width: 500px">
+    <!-- <a
       mat-list-item
       class="list-item"
       *ngFor="let video of videoList; let i = index"
@@ -18,18 +18,23 @@
     >
       <i class="material-icons">play_arrow</i>
       {{ video.name }}
-    </a>
+    </a> -->
   </mat-nav-list>
-  <h2>Danh sách Scan Qrcode</h2>
+  <h2 style="margin-left: 30px !important;">Danh sách Scan Qrcode</h2>
 
   <table class="styled-table" *ngIf="listResult">
     <thead>
     <tr>
       <th>ID</th>
-      <th>QrCode</th>
-      <th>POSCode</th>
-      <th>Ảnh Qrcode</th>
       <th>Ảnh hàng hóa</th>
+      <th>Ảnh Qrcode</th>
+      <th>Số hiệu bưu gửi</th>
+      <th>Dịch vụ</th>
+      <th>Địa chỉ nhận</th>
+      <th>Trọng lượng</th>
+      <th>Mã bưu chính</th>
+      <th>Bưu cục gốc</th>
+      <th>Bưu cục nhận</th>
     </tr>
     </thead>
     <tbody>
@@ -40,18 +45,34 @@
       <td (click)="showDetailAll(i,'all')">
         <span >{{result.id}}</span>
       </td>
-      <td (click)="showDetailAll(i,'all')">
-        <span >{{result.itemCode}}</span>
-      </td>
-      <td (click)="showDetailAll(i,'all')">
-        <span >{{result.poscode}}</span>
+      <td >
+        <img [src]="result.imgGoods" alt="verison imgs" class="img-td" (click)="showDetailImg(i,'imgGoods')">
       </td>
       <td >
         <img [src]="result.imgQrcode" alt="verison imgs" class="img-td" (click)="showDetailImg(i,'imgQrcode')">
       </td>
-      <td >
-        <img [src]="result.imgGoods" alt="verison imgs" class="img-td" (click)="showDetailImg(i,'imgGoods')">
+      <td (click)="showDetailAll(i,'all')">
+        <span >{{result.itemCode}}</span>
       </td>
+      <td (click)="showDetailAll(i,'all')">
+        <span >{{result.serviceCode}}</span>
+      </td>
+      <td (click)="showDetailAll(i,'all')">
+        <span >{{result.receiverAddressCode}}</span>
+      </td>
+      <td (click)="showDetailAll(i,'all')">
+        <span >{{result.weight}}</span>
+      </td>
+      <td (click)="showDetailAll(i,'all')">
+        <span >{{result.receiverAddressCode}}</span>
+      </td>
+      <td (click)="showDetailAll(i,'all')">
+        <span >{{result.acceptancePOSCode}}</span>
+      </td>
+      <td (click)="showDetailAll(i,'all')">
+        <span >{{result.poscode}}</span>
+      </td>
+
     </tr>
     </tbody>
   </table>

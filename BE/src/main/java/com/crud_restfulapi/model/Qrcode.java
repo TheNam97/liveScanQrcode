@@ -24,6 +24,67 @@ public class Qrcode {
   @Column(name = "imggoods")
   private String imgGoods;
 
+  @Column(name = "acceptanceposcode")
+  private Long acceptancePOSCode;
+  @Column(name = "weight")
+  private Long weight;
+  @Column(name = "receiveraddresscode")
+  private Long receiverAddressCode;
+  @Column(name = "servicecode")
+  private String serviceCode;
+  @Column(name = "speaker")
+  private String speaker;
+  @Column(name = "groupid")
+  private String groupId;
+
+  public String getGroupId() {
+    return groupId;
+  }
+
+  public void setGroupId(String groupId) {
+    this.groupId = groupId;
+  }
+
+  public Long getAcceptancePOSCode() {
+    return acceptancePOSCode;
+  }
+
+  public void setAcceptancePOSCode(Long acceptancePOSCode) {
+    this.acceptancePOSCode = acceptancePOSCode;
+  }
+
+  public Long getWeight() {
+    return weight;
+  }
+
+  public void setWeight(Long weight) {
+    this.weight = weight;
+  }
+
+  public Long getReceiverAddressCode() {
+    return receiverAddressCode;
+  }
+
+  public void setReceiverAddressCode(Long receiverAddressCode) {
+    this.receiverAddressCode = receiverAddressCode;
+  }
+
+  public String getServiceCode() {
+    return serviceCode;
+  }
+
+  public void setServiceCode(String serviceCode) {
+    this.serviceCode = serviceCode;
+  }
+
+  public String getSpeaker() {
+    return speaker;
+  }
+
+  public void setSpeaker(String speaker) {
+    this.speaker = speaker;
+  }
+
   public Long getId() {
     return id;
   }
