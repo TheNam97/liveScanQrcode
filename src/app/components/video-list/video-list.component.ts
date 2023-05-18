@@ -110,7 +110,7 @@ export class VideoListComponent implements OnInit {
         searchOption: JSON.stringify(this.searchOption),
       }
     ).subscribe( dataListQrcode => {
-      console.log('dataListQrcode.body.content',dataListQrcode.body.content)
+      // console.log('dataListQrcode.body.content',dataListQrcode.body.content)
       this.listResult = dataListQrcode.body.content;
       this.total = dataListQrcode.body.totalElements;
       // this.videoService.getRoboFlowQrcode(this.listResult[0].imgGoods).subscribe(data =>{
