@@ -2,6 +2,7 @@ package com.crud_restfulapi.model;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
+import java.util.UUID;
 
 @Entity
 @Table(name = "qrcode")

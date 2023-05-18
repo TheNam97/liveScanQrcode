@@ -1,6 +1,7 @@
 package com.crud_restfulapi.controller;
 import com.crud_restfulapi.model.Qrcode;
 import com.crud_restfulapi.model.ResponseObject;
+import com.crud_restfulapi.repository.QrcodeRepository;
 import com.crud_restfulapi.service.IQrcodeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;
@@ -15,6 +16,8 @@ import java.awt.datatransfer.UnsupportedFlavorException;
 import java.awt.event.InputEvent;
 import java.awt.event.KeyEvent;
 import java.io.IOException;
+import java.util.UUID;
+
 import org.springframework.web.bind.annotation.*;
 
 @CrossOrigin(origins = "*", maxAge = 3600)
@@ -24,12 +27,19 @@ public class QrcodeController {
 
   @Autowired
   private IQrcodeService iQrcodeService;
+  @Autowired
+  private QrcodeRepository qrcodeRepository;
 
   @GetMapping("/getLatest/{itemCode}")
   ResponseEntity<ResponseObject> getAll(@PathVariable String itemCode) throws UnsupportedFlavorException, IOException, AWTException {
     Qrcode qrcode = iQrcodeService.getQrcodeLatest();
     ResponseObject responseObject = new ResponseObject("Done!", "Qrcode mới nhất", qrcode);
     System.setProperty("java.awt.headless", "false");
+    Long sum = qrcodeRepository.sumWeight();
+    if( sum != null && sum >= 20000){
+      UUID uuid = UUID.randomUUID();
+      qrcodeRepository.updateGroupId(uuid.toString());
+    }
     if(!qrcode.getItemCode().equals(itemCode) && !itemCode.equals("first")){
       String testString = qrcode.getItemCode();
       String str = testString;
