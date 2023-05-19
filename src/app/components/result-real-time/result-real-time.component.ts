@@ -18,7 +18,7 @@ export class ResultRealTimeComponent implements OnInit {
 
   public ngOnInit(): void {
     this.videoService.getQrcode.subscribe(getQrcode => {
-      console.log('getQrcode',getQrcode)
+      // console.log('getQrcode',getQrcode)
       if(getQrcode !== null && getQrcode !== undefined){
         this.qrcode = getQrcode
         this.qrcode.senderAddress = 'Địa chỉ gửi: '+ this.qrcode.senderAddress

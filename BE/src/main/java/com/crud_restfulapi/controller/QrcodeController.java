@@ -30,16 +30,27 @@ public class QrcodeController {
   @Autowired
   private QrcodeRepository qrcodeRepository;
 
+  @GetMapping("/checkGroupId")
+  ResponseEntity<Boolean> checkGroupId() {
+    Long sum = qrcodeRepository.sumWeight();
+    if( sum != null && sum >= 20000){
+      UUID uuid = UUID.randomUUID();
+      qrcodeRepository.updateGroupId(uuid.toString());
+      return new ResponseEntity<>(true, HttpStatus.OK);
+    }
+    return new ResponseEntity<>(false, HttpStatus.OK);
+  }
+
   @GetMapping("/getLatest/{itemCode}")
   ResponseEntity<ResponseObject> getAll(@PathVariable String itemCode) throws UnsupportedFlavorException, IOException, AWTException {
     Qrcode qrcode = iQrcodeService.getQrcodeLatest();
     ResponseObject responseObject = new ResponseObject("Done!", "Qrcode mới nhất", qrcode);
     System.setProperty("java.awt.headless", "false");
-    Long sum = qrcodeRepository.sumWeight();
-    if( sum != null && sum >= 20000){
-      UUID uuid = UUID.randomUUID();
-      qrcodeRepository.updateGroupId(uuid.toString());
-    }
+//    Long sum = qrcodeRepository.sumWeight();
+//    if( sum != null && sum >= 20000){
+//      UUID uuid = UUID.randomUUID();
+//      qrcodeRepository.updateGroupId(uuid.toString());
+//    }
     if(!qrcode.getItemCode().equals(itemCode) && !itemCode.equals("first")){
       String testString = qrcode.getItemCode();
       String str = testString;

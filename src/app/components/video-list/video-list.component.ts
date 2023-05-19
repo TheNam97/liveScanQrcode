@@ -6,6 +6,7 @@ import {IQrCode, QrCode} from 'src/app/model';
 import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import {AppComponent} from "../../app.component";
 import {ShowdetailComponent} from "../showdetail/showdetail.component";
+import { CheckGroupIdComponent } from '../check-group-id/check-group-id.component';
 
 @Component({
   selector: 'app-video-list',
@@ -85,6 +86,7 @@ export class VideoListComponent implements OnInit {
           // console.log('this.qrcode',this.qrcode)
         })
         this.getListQrcode();
+        this.checkGroupId();
       }
       , 1500
     );
@@ -95,6 +97,17 @@ export class VideoListComponent implements OnInit {
     //     getData.unsubscribe();
     //   }
     // });
+  }
+  public checkGroupId(){
+    this.videoService.checkGroupId().subscribe(data => {
+      if(data.body){
+        const dialog = this._dialog.open(CheckGroupIdComponent, {
+          width: '35%',
+          disableClose: false,
+          autoFocus:true,
+        });
+      }
+    })
   }
   public getListQrcode(){
     this.searchOption = {}

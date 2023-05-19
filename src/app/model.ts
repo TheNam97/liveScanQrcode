@@ -14,6 +14,7 @@ export interface IQrCode {
     receiverAddressCode?: any | null;
     serviceCode?: any | null;
     speaker?: any | null;
+    groupId?: any | null;
 }
 export class QrCode implements IQrCode {
 }

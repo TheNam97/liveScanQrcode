@@ -69,6 +69,13 @@ export class VideoService {
     });
   }
 
+  public checkGroupId(): Observable<any> {
+    return this.http.get<any>(`http://localhost:8082/api/qrcode/checkGroupId`, {
+      observe: 'response',
+      responseType: 'json'
+    });
+  }
+
   public getLatest(itemCode: any): Observable<any> {
     // const headers = this.setHeaders()
     return this.http.get<any>(`http://localhost:8082/api/qrcode/getLatest/${itemCode}`, {

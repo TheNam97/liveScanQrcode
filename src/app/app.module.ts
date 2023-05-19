@@ -24,6 +24,7 @@ import {MatDialogModule} from "@angular/material/dialog";
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ShowdetailComponent } from './components/showdetail/showdetail.component';
 import { ResultRealTimeComponent } from './components/result-real-time/result-real-time.component';
+import { CheckGroupIdComponent } from './components/check-group-id/check-group-id.component';
 
 @NgModule({
   declarations: [
@@ -36,7 +37,8 @@ import { ResultRealTimeComponent } from './components/result-real-time/result-re
     TimeComponent,
     VideoListComponent,
     ShowdetailComponent,
-    ResultRealTimeComponent
+    ResultRealTimeComponent,
+    CheckGroupIdComponent
   ],
   imports: [
     PopoverModule.forRoot(),
